@@ -1,20 +1,22 @@
 #include <iostream>
 #include<cmath>
+#include<vector>
 
-int main() {
-  int n, count = 0;
-  printf("Enter the value: ");
-  std::cin>>n;
-  for(int i=1; i<=sqrt(n); i++){
-      if(sqrt(n) == i){
+std::vector<int> countDivisors(std::vector<int> nums){
+  std::vector<int> res(nums.size(), 0);
+  for(int i=0; i<nums.size(); i++){
+    int count = 0;
+    for(int i=1; i<=sqrt(nums[i]); i++){
+      if(sqrt(nums[i]) == i){
         count ++;
         printf("one\n");
       }
-      else if(n%i == 0){
+      else if(nums[i]%i == 0){
         count +=2;
         printf("two\n");
       }
+    }
+    res[i] = count;
   }
-  printf("The number of divisors for %d is %d", n, count);
-  return 0;
+  return res;
 }
